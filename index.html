@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CartWise — Smart Online Shopping Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-cart-shopping"></i> CartWise
+        </div>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search products..." onkeyup="filterProducts()">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <nav>
+            <a href="#hero">Home</a>
+            <a href="#products">Products</a>
+            <a href="#orders">My Orders</a>
+            <div class="cart-icon" id="cartBtn">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span id="cartCount">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <h1>Smart Shopping Made Simple</h1>
+            <p>Discover top-tier products with instant checkout & seamless order tracking.</p>
+            <a href="#products" class="btn-primary">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Categories & Filter Section -->
+    <section id="products" class="products-section">
+        <h2>Explore Catalog</h2>
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterCategory('All', event)">All</button>
+            <button class="filter-btn" onclick="filterCategory('Electronics', event)">Electronics</button>
+            <button class="filter-btn" onclick="filterCategory('Fashion', event)">Fashion</button>
+            <button class="filter-btn" onclick="filterCategory('Home', event)">Home</button>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="product-grid" id="productGrid"></div>
+    </section>
+
+    <!-- Shopping Cart Slide-out -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <span class="close-btn" id="closeCartBtn">&times;</span>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-footer">
+            <div class="summary-line"><span>Subtotal:</span> <span id="cartSubtotal">$0.00</span></div>
+            <div class="summary-line"><span>Tax (5%):</span> <span id="cartTax">$0.00</span></div>
+            <div class="summary-line total"><span>Total:</span> <span id="cartTotal">$0.00</span></div>
+            <button class="btn-primary checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModalBtn">&times;</span>
+            <h3>Delivery Details</h3>
+            <form id="checkoutForm">
+                <input type="text" id="custName" placeholder="Full Name" required>
+                <input type="email" id="custEmail" placeholder="Email Address" required>
+                <input type="tel" id="custPhone" placeholder="Phone Number (10 digits)" pattern="[0-9]{10}" required>
+                <textarea id="custAddress" placeholder="Shipping Address" rows="3" required></textarea>
+                <button type="submit" class="btn-primary">Place Order</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Order Confirmation Screen -->
+    <section id="confirmation" class="confirmation-section hidden">
+        <div class="confirm-card">
+            <i class="fa-solid fa-circle-check confirm-icon"></i>
+            <h2>Order Placed Successfully!</h2>
+            <p>Order ID: <strong id="confirmOrderID">#0000</strong></p>
+            <p>Customer: <span id="confirmName"></span></p>
+            <p>Total Paid: <strong id="confirmTotal"></strong></p>
+            <button class="btn-secondary" id="continueBtn">Continue Shopping</button>
+        </div>
+    </section>
+
+    <!-- My Orders Section (localStorage) -->
+    <section id="orders" class="orders-section">
+        <h2>My Orders</h2>
+        <div class="orders-list" id="ordersList"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 CartWise — Smart Online Shopping Portal. Academic Project.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
